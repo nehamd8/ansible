@@ -1,0 +1,63 @@
+Lauch 2  ubuntu instances
+Change hostname
+sudo hostnamectl set-hostname "master"
+sudo hostnamectl set-hostname "worker"
+Do passwardless ssh for both server
+           sudo su
+cd
+pwd
+(/root --shows)
+cd .ssh
+ls –la
+cd ..
+ssh-keygen
+enter 3 times 
+cd .ssh
+ls –la
+cat id_rsa.pub
+copy data
+
+On new server-
+sudo su
+cd
+pwd
+(/root --shows)
+cd .ssh
+ls –la
+cat>>authorized _keys
+paste copied data
+enter
+ctrl+c
+On server 1-
+ssh 172.31.84.95
+private IP of  2nd  server
+on master-
+cat  id_rsa.pub
+copy
+cat>>authorized_keys
+paste
+
+installing ansible
+cd ~
+sudo apt-add-repository ppa:ansible/ansible
+
+for ec2- yum install –
+sudo amazon-linux-extras install ansible2
+
+sudo apt update
+sudo apt install ansible
+
+To introduce ansible new server
+cd /etc/ansible
+ls –l
+vi hosts
+rename webserver to web
+enter public ip of worker and master server
+:wq
+ansible -m ping web  -to check ansible ip running
+To check storage-
+ansible -m command -a 'df -h' web
+to run multiple commands-
+cat>abc.yaml
+copy commands
+ansible-playbook abc.yaml
